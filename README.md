@@ -57,7 +57,7 @@ module.exports = function(config) {
       // define custom replacements for template tags
       // (any unspecified tags will be replaced with '')
       djangoTags: {
-        static_url: '/static/,
+        static_url: '/static/',
         comment: '/*',
         endcomment: '*/'
       }
