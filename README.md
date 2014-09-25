@@ -1,6 +1,6 @@
 # karma-ng-django-html2js-preprocessor
 
-> Preprocessor for converting HTML files with Django tags to [AngularJS](http://angularjs.org/) templates.
+> Preprocessor for converting HTML files with [Django](https://www.djangoproject.com/) tags to [AngularJS](http://angularjs.org/) templates.
 
 *Note:* If you are looking for a AngularJS preprocessor that is not tight to Django, check out [karma-ng-html2js-preprocessor](https://github.com/karma-runner/karma-ng-html2js-preprocessor).
 
