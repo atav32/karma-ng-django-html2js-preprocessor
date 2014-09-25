@@ -1,23 +1,23 @@
 {
-  "name": "karma-ng-html2js-preprocessor",
+  "name": "karma-ng-django-html2js-preprocessor",
   "version": "0.1.0",
-  "description": "A Karma plugin. Compile AngularJS templates to JavaScript on the fly.",
+  "description": "A Karma plugin. Compile Django-generated AngularJS templates to JavaScript on the fly.",
   "main": "lib/index.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/karma-runner/karma-ng-html2js-preprocessor.git"
+    "url": "git://github.com/karma-runner/karma-ng-django-html2js-preprocessor.git"
   },
   "keywords": [
     "karma-plugin",
     "karma-preprocessor",
     "angularjs",
     "angular",
-    "html2js"
+    "django-html2js"
   ],
-  "author": "Vojta Jina <vojta.jina@gmail.com>",
+  "author": "Brian Zhang <brian@jazzberrygames.com",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -39,6 +39,7 @@
     "Robin Roestenburg <robin@roestenburg.io>",
     "Lucas Galfasó <lgalfaso@gmail.com>",
     "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
-    "BrianLenzo <brian.lenzo@gmail.com>"
+    "BrianLenzo <brian.lenzo@gmail.com>",
+    "Vojta Jina <vojta.jina@gmail.com>"
   ]
 }
