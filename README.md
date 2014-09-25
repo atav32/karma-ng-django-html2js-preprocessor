@@ -39,7 +39,7 @@ module.exports = function(config) {
       '**/*.html'
     ],
 
-    ngHtml2JsPreprocessor: {
+    ngDjangoHtml2JsPreprocessor: {
       // strip this from the file path
       stripPrefix: 'public/',
       // prepend this to the
@@ -53,6 +53,14 @@ module.exports = function(config) {
       // setting this option will create only a single module that contains templates
       // from all the files, so you can load them all with module('foo')
       moduleName: 'foo'
+      
+      // define custom replacements for template tags
+      // (any unspecified tags will be replaced with '')
+      djangoTags: {
+        static_url: '/static/,
+        comment: '/*',
+        endcomment: '*/'
+      }
     }
   });
 };
@@ -62,15 +70,35 @@ module.exports = function(config) {
 
 This preprocessor converts HTML files into JS strings, strips out Django tags and generates Angular modules. These modules, when loaded, puts these HTML files into the `$templateCache` and therefore Angular won't try to fetch them from the server.
 
-For instance this `template.html`...
+For instance, using the above configuration, this `public/template.html`...
 ```html
-<div>something</div>
+{% comment %}
+  Some comment
+{% endcomment %}
+
+{% load templatetags %}
+
+<img ng-src="{% static_url %}image.png"></img>
 ```
 ... will be served as `template.html.js`:
 ```js
-angular.module('template.html', []).config(function($templateCache) {
-  $templateCache.put('template.html', '<div>something</div>');
+(function(module) {
+try {
+  module = angular.module('foo');
+} catch (e) {
+  module = angular.module('foo', []);
+}
+module.run(function($templateCache) {
+  $templateCache.put('served/template.html',
+    '/*\n' +
+    '  Some comment\n' +
+    '*/\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '<img ng-src="/static/img.png"></img>');
 });
+})();
 ```
 
 See the [ng-directive-testing](https://github.com/vojtajina/ng-directive-testing) for a complete example.
