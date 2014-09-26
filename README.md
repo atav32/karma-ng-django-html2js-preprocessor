@@ -13,7 +13,7 @@ The easiest way is to keep `karma-ng-django-html2js-preprocessor` as a devDepend
 {
   "devDependencies": {
     "karma": "~0.10",
-    "karma-ng-django-html2js-preprocessor": "~0.1.3"
+    "karma-ng-django-html2js-preprocessor": "~0.1.4"
   }
 }
 ```
