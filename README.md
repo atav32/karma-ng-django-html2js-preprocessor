@@ -13,7 +13,7 @@ The easiest way is to keep `karma-ng-django-html2js-preprocessor` as a devDepend
 {
   "devDependencies": {
     "karma": "~0.10",
-    "karma-ng-django-html2js-preprocessor": "~0.1"
+    "karma-ng-django-html2js-preprocessor": "~0.1.3"
   }
 }
 ```
@@ -61,6 +61,16 @@ module.exports = function(config) {
         comment: '/*',
         endcomment: '*/'
       }
+
+      // define custom replacements for tag symbols 
+      aliasTags: [{
+        original: '{[',
+        updated: '{{'
+      },
+      {
+        original: ']}',
+        updated: '}}'
+      }]
     }
   });
 };
@@ -79,6 +89,7 @@ For instance, using the above configuration, this `public/template.html`...
 {% load templatetags %}
 
 <img ng-src="{% static_url %}image.png"></img>
+<div>{[ message ]}</div>
 ```
 ... will be served as `template.html.js`:
 ```js
@@ -96,7 +107,8 @@ module.run(function($templateCache) {
     '\n' +
     '\n' +
     '\n' +
-    '<img ng-src="/static/img.png"></img>');
+    '<img ng-src="/static/img.png"></img>\n' +
+    '<div>{{ message }}</div>');
 });
 })();
 ```
